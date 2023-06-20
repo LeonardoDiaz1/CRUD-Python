@@ -11,29 +11,29 @@ class Product:
         self.wind = window
         self.wind.title('Aplicacion de Productos')
 
-        # ? Creating a Frame Container
+        #? Creating a Frame Container
         frame = LabelFrame(self.wind, text = 'Resgistrar nuevo Producto')
         frame.grid(row = 0, column = 0, columnspan = 3, pady = 20)
 
-        # ? Name input
+        #? Name input
         Label(frame, text = 'Name: ').grid(row = 1, column = 0)
         self.name = Entry(frame)
         self.name.grid(row = 1, column = 1)
 
-        # ? Price Input
+        #? Price Input
         Label(frame, text = 'Precio: ').grid(row = 2, column = 0)
         self.name.focus()
         self.price = Entry(frame)
         self.price.grid(row = 2, column = 1)
 
-        # ? Button add Product
+        #? Button add Product
         ttk.Button(frame, text = 'Guardar Producto', command = self.add_product).grid(row = 3, columnspan = 2, sticky = W + E)
 
-        # ? Output Messages
+        #? Output Messages
         self.message = Label(text = '', fg = 'red')
         self.message.grid(row = 3, column = 0, columnspan = 2, sticky = W + E)
 
-        # ? Table
+        #? Table
         self.tree = ttk.Treeview(height = 10, columns = 2)
         self.tree.grid(row = 4, column = 0, columnspan = 2)
         self.tree.heading('#0', text = 'Nombre', anchor = CENTER)
@@ -43,7 +43,7 @@ class Product:
         ttk.Button(text = 'DELETE', command = self.delete_product).grid(row = 5, column = 0, sticky = W + E)
         ttk.Button(text = 'EDIT', command = self.edit_product).grid(row = 5, column = 1, sticky = W + E)
 
-        # ? Filling the row
+        #? Filling the row
         self.get_products()
 
     def run_query(self, query, parameters = ()):
@@ -58,7 +58,7 @@ class Product:
         records = self.tree.get_children()
         for element in records:
             self.tree.delete(element)
-        # ? Queryng data
+        #? Queryng data
         query = 'SELECT * FROM product ORDER BY name DESC'
         db_rows = self.run_query(query)
         for row in db_rows:
